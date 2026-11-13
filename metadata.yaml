@@ -1,0 +1,10 @@
+name: astrbot_plugin_forward_media_saver
+display_name: 合并转发媒体保存
+short_desc: 自动保存合并转发媒体，支持索引、统计、模板和清理
+desc: 监听群聊与私聊中的合并转发消息，递归解析图片、视频、语音和文件并保存到本地，提供 SQLite 索引、统计命令、WebUI 页面、命名模板、失败任务重试与清理。
+author: Mnbqq
+version: 2.0.3
+repo: https://github.com/Mnbqq/astrbot_plugin_forward_media_saver
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.5,<5"

@@ -1,0 +1,104 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --danger: #dc2626;
+  --chip: #eef2ff;
+}
+
+html[data-theme="dark"] {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #1f2937;
+  --accent: #60a5fa;
+  --danger: #f87171;
+  --chip: #1e293b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.header, .panel-head, .actions, .danger-zone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header h1 { margin: 0; font-size: 22px; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card, .panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.card { display: grid; gap: 8px; }
+.card-label { color: var(--muted); font-size: 13px; }
+.card strong { font-size: 24px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--chip);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.table-wrap { overflow: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 500; }
+.empty { text-align: center; color: var(--muted); padding: 20px; }
+
+button, select, input {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+}
+
+button { cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.danger { color: var(--danger); border-color: var(--danger); }
+.danger-zone { margin-top: 4px; }
+.danger-zone h2 { margin: 0 0 6px; }
+
+.message { min-height: 20px; color: var(--accent); }
+.message.error { color: var(--danger); }
+
+@media (max-width: 720px) {
+  .cards { grid-template-columns: 1fr; }
+  .header, .danger-zone { align-items: flex-start; flex-direction: column; }
+}

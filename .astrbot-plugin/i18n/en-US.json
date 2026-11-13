@@ -1,0 +1,8 @@
+{
+  "views": {
+    "dashboard": {
+      "title": "Media Saver Stats",
+      "description": "Saved media counts, storage usage and recent records"
+    }
+  }
+}

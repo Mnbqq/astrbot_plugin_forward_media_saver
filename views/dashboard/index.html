@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>合并转发媒体保存统计</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <div>
+          <h1 id="title">合并转发媒体保存统计</h1>
+          <p id="subtitle" class="muted">查看保存数量、空间占用和最近记录</p>
+        </div>
+        <div class="actions">
+          <select id="days" aria-label="统计范围">
+            <option value="1">最近 1 天</option>
+            <option value="7">最近 7 天</option>
+            <option value="30" selected>最近 30 天</option>
+            <option value="90">最近 90 天</option>
+            <option value="0">全部</option>
+          </select>
+          <button id="refresh" type="button">刷新</button>
+        </div>
+      </header>
+
+      <section class="cards">
+        <article class="card">
+          <span class="card-label">记录数</span>
+          <strong id="count">-</strong>
+        </article>
+        <article class="card">
+          <span class="card-label">总大小</span>
+          <strong id="size">-</strong>
+        </article>
+        <article class="card">
+          <span class="card-label">任务</span>
+          <strong id="jobs">-</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>按类型</h2>
+        </div>
+        <div id="kinds" class="chips"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>最近保存</h2>
+          <span id="paths" class="muted small"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>类型</th>
+                <th>文件</th>
+                <th>大小</th>
+              </tr>
+            </thead>
+            <tbody id="recent"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel danger-zone">
+        <div>
+          <h2>清理旧文件</h2>
+          <p class="muted">按天数删除媒体文件；不会删除正在使用的索引和清单。</p>
+        </div>
+        <div class="actions">
+          <input id="clean-days" type="number" min="1" value="30" aria-label="保留天数" />
+          <button id="clean" class="danger" type="button">清理</button>
+        </div>
+      </section>
+
+      <p id="message" class="message" role="status"></p>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "messages": [
+    {
+      "sender": {"user_id": 10001, "nickname": "甲"},
+      "time": 1700000000,
+      "message_id": 900001,
+      "message": [
+        {"type": "image", "data": {"file": "a.jpg", "url": "https://example.com/a.jpg", "file_size": "123"}},
+        {"type": "text", "data": {"text": "看图"}}
+      ]
+    },
+    {
+      "sender": {"user_id": 10002, "nickname": "乙"},
+      "time": 1700000001,
+      "message_id": 900002,
+      "message": [
+        {"type": "video", "data": {"file": "b.mp4", "url": "https://example.com/b.mp4"}},
+        {"type": "record", "data": {"file": "c.amr", "url": "https://example.com/c.amr"}},
+        {"type": "file", "data": {"file": "d.pdf", "file_name": "报告.pdf", "url": "https://example.com/d.pdf"}}
+      ]
+    }
+  ]
+}

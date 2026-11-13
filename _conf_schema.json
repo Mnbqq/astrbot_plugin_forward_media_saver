@@ -1,0 +1,305 @@
+{
+  "enabled": {
+    "description": "启用插件",
+    "type": "bool",
+    "default": true,
+    "hint": "关闭后不再监听任何合并转发消息。"
+  },
+  "save_images": {
+    "description": "保存图片",
+    "type": "bool",
+    "default": true
+  },
+  "save_videos": {
+    "description": "保存视频",
+    "type": "bool",
+    "default": true,
+    "hint": "QQ 视频文件通常较大，建议同时留意单文件大小限制。"
+  },
+  "save_audio": {
+    "description": "保存语音",
+    "type": "bool",
+    "default": false,
+    "hint": "合并转发里的 record/语音段是否保存。部分协议端会返回 silk 原始格式。"
+  },
+  "save_files": {
+    "description": "保存文件附件",
+    "type": "bool",
+    "default": false,
+    "hint": "合并转发里的 File/文件段是否保存。文件类型不做媒体嗅探，只按大小和文件名处理。"
+  },
+  "skip_emoji": {
+    "description": "跳过表情包/GIF 表情",
+    "type": "bool",
+    "default": false,
+    "hint": "跳过 NapCat 标记为动画表情（sub_type=1）以及 .gif 的图片。"
+  },
+  "save_group": {
+    "description": "保存群聊中的合并转发",
+    "type": "bool",
+    "default": true
+  },
+  "save_private": {
+    "description": "保存私聊中的合并转发",
+    "type": "bool",
+    "default": true
+  },
+  "group_whitelist": {
+    "description": "群聊白名单",
+    "type": "list",
+    "default": [],
+    "hint": "填写群号；留空表示所有群都保存。填写后只有列表中的群会保存。"
+  },
+  "group_blacklist": {
+    "description": "群聊黑名单",
+    "type": "list",
+    "default": [],
+    "hint": "填写群号；黑名单优先于白名单。"
+  },
+  "user_blacklist": {
+    "description": "发送者黑名单",
+    "type": "list",
+    "default": [],
+    "hint": "填写 QQ 号；这些用户发送的合并转发不会被保存。"
+  },
+  "max_depth": {
+    "description": "嵌套转发解析层数",
+    "type": "int",
+    "default": 3,
+    "slider": {
+      "min": 0,
+      "max": 10,
+      "step": 1
+    },
+    "hint": "0 表示只处理最外层，不继续展开转发里嵌套的转发。"
+  },
+  "max_media_per_forward": {
+    "description": "单条合并转发的媒体上限",
+    "type": "int",
+    "default": 100,
+    "slider": {
+      "min": 1,
+      "max": 2000,
+      "step": 1
+    },
+    "hint": "一次合并转发最多保存多少个图片/视频，防止超大转发占满磁盘。"
+  },
+  "max_file_mb": {
+    "description": "单文件大小上限（MB）",
+    "type": "int",
+    "default": 200,
+    "slider": {
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    }
+  },
+  "min_video_seconds": {
+    "description": "视频最短时长（秒）",
+    "type": "int",
+    "default": 0,
+    "slider": {
+      "min": 0,
+      "max": 86400,
+      "step": 1
+    },
+    "hint": "小于该秒数的视频不保存；0 表示不过滤。优先使用消息里的时长，没有则下载后探测。"
+  },
+  "skip_unknown_video_duration": {
+    "description": "未知时长时跳过",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后，无法识别时长的视频在 min_video_seconds>0 时也会跳过；默认未知时仍保存。"
+  },
+  "video_probe_timeout": {
+    "description": "视频时长探测超时（秒）",
+    "type": "int",
+    "default": 10,
+    "slider": {
+      "min": 1,
+      "max": 120,
+      "step": 1
+    },
+    "hint": "使用 ffprobe 探测视频时长的最长等待时间。"
+  },
+  "min_free_mb": {
+    "description": "磁盘最低剩余空间（MB）",
+    "type": "int",
+    "default": 200,
+    "slider": {
+      "min": 0,
+      "max": 102400,
+      "step": 50
+    },
+    "hint": "剩余空间低于此值时停止保存，避免把磁盘写满。"
+  },
+  "api_timeout": {
+    "description": "协议端接口超时（秒）",
+    "type": "int",
+    "default": 30,
+    "slider": {
+      "min": 3,
+      "max": 300,
+      "step": 1
+    },
+    "hint": "调用 get_forward_msg 等接口的最长等待时间。"
+  },
+  "file_api_timeout": {
+    "description": "协议端取文件超时（秒）",
+    "type": "int",
+    "default": 300,
+    "slider": {
+      "min": 5,
+      "max": 3600,
+      "step": 5
+    },
+    "hint": "调用 get_file 让 NapCat 下载视频的最长等待时间；大视频或慢速网络需要调大。"
+  },
+  "download_timeout": {
+    "description": "媒体下载超时（秒）",
+    "type": "int",
+    "default": 60,
+    "slider": {
+      "min": 5,
+      "max": 1800,
+      "step": 5
+    }
+  },
+  "concurrency": {
+    "description": "同时处理的任务数",
+    "type": "int",
+    "default": 2,
+    "slider": {
+      "min": 1,
+      "max": 16,
+      "step": 1
+    },
+    "hint": "同时下载的合并转发数量。过大可能触发 CDN 限速。"
+  },
+  "retries": {
+    "description": "下载重试次数",
+    "type": "int",
+    "default": 2,
+    "slider": {
+      "min": 0,
+      "max": 5,
+      "step": 1
+    }
+  },
+  "dedupe": {
+    "description": "跨消息内容去重",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后按 SHA-256 跳过之前保存过的相同文件（全局生效）。关闭则每次转发都会保存。"
+  },
+  "folder_layout": {
+    "description": "目录结构",
+    "type": "string",
+    "default": "date_scope",
+    "options": [
+      "date_scope",
+      "date",
+      "scope",
+      "flat"
+    ],
+    "labels": [
+      "日期/会话（推荐）",
+      "按日期",
+      "按会话",
+      "全部放在根目录"
+    ],
+    "hint": "会话指 group_群号 或 private_QQ号。"
+  },
+  "custom_dir": {
+    "description": "自定义保存目录",
+    "type": "string",
+    "default": "",
+    "hint": "留空使用 data/plugin_data/astrbot_plugin_forward_media_saver/media。相对路径以插件数据目录为基准，也可以填绝对路径。"
+  },
+  "folder_template": {
+    "description": "目录模板",
+    "type": "string",
+    "default": "",
+    "hint": "留空使用上面的目录结构。可用 {date} {year} {month} {day} {scope} {scope_id} {scope_name} {kind}。例如 {date}/{scope_name}。"
+  },
+  "filename_template": {
+    "description": "文件名模板",
+    "type": "string",
+    "default": "",
+    "hint": "留空使用默认命名。可用 {date} {time} {sender} {sender_name} {kind} {seq} {hash} {orig}。扩展名会自动追加。"
+  },
+  "timezone": {
+    "description": "日期时区",
+    "type": "string",
+    "default": "Asia/Shanghai",
+    "hint": "用于 {date}/{media_date} 等模板和旧版目录日期。留空使用容器本地时区；Docker 默认 UTC 时建议填 Asia/Shanghai。"
+  },
+  "search_dirs": {
+    "description": "本地缓存搜索目录",
+    "type": "list",
+    "default": [],
+    "hint": "当视频段只有文件名、没有 URL 时，在协议端缓存目录里按文件名查找。相对路径以 AstrBot 工作目录为基准；Docker 部署时请填挂载到 AstrBot 容器内的 NapCat/Lagrange 缓存目录。"
+  },
+  "save_manifest": {
+    "description": "写入 manifest.jsonl",
+    "type": "bool",
+    "default": true,
+    "hint": "每保存一个媒体追加一条 JSONL 清单，同时写入 SQLite 索引。"
+  },
+  "retention_days": {
+    "description": "默认保留天数",
+    "type": "int",
+    "default": 0,
+    "slider": {
+      "min": 0,
+      "max": 3650,
+      "step": 1
+    },
+    "hint": "0 表示不自动清理；/fms clean 不带参数时使用这个天数。"
+  },
+  "max_total_mb": {
+    "description": "保存目录总量上限（MB）",
+    "type": "int",
+    "default": 0,
+    "slider": {
+      "min": 0,
+      "max": 1048576,
+      "step": 100
+    },
+    "hint": "0 表示不限制；/fms clean 会按最旧文件删除到低于此值。"
+  },
+  "max_attempts": {
+    "description": "失败任务最大重试次数",
+    "type": "int",
+    "default": 3,
+    "slider": {
+      "min": 1,
+      "max": 20,
+      "step": 1
+    }
+  },
+  "block_private_urls": {
+    "description": "阻止内网 URL",
+    "type": "bool",
+    "default": false,
+    "hint": "启用后拒绝下载 localhost/内网/回环地址的 HTTP 媒体链接，降低 SSRF 风险。SnowLuma 返回 127.0.0.1 URL 时请保持关闭或改为服务名。"
+  },
+  "allowed_media_hosts": {
+    "description": "媒体域名白名单",
+    "type": "list",
+    "default": [],
+    "hint": "留空不限制；填写后只有域名后缀匹配的 HTTP URL 才允许下载，例如 qq.com、qpic.cn。"
+  },
+  "notify": {
+    "description": "发送保存摘要",
+    "type": "bool",
+    "default": false,
+    "hint": "在来源会话回复“已保存 N 个图片/视频”。群聊中建议保持关闭以免刷屏。"
+  },
+  "notify_empty": {
+    "description": "没有媒体时也发送摘要",
+    "type": "bool",
+    "default": false,
+    "hint": "仅在上面的“发送保存摘要”开启时生效。"
+  }
+}
