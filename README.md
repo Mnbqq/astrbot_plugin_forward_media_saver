@@ -1,3 +1,5 @@
+![:name](https://count.getloli.com/@astrbot-forward-media-saver?name=astrbot-forward-media-saver&theme=minecraft&padding=6&offset=0&align=top&scale=1&pixelated=1&darkmode=auto)
+
 # 合并转发媒体保存（astrbot_plugin_forward_media_saver）
 
 自动保存 QQ 群聊 / 私聊里**别人发送的合并转发**中的图片、视频，可选保存语音和文件附件。
