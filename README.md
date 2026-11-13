@@ -2,6 +2,8 @@
 
 # 合并转发媒体保存（astrbot_plugin_forward_media_saver）
 
+**⚠️暂时没有实现文件和语音的保存**图片和视频可以正常使用
+
 自动保存 QQ 群聊 / 私聊里**别人发送的合并转发**中的图片、视频，可选保存语音和文件附件。
 
 插件监听 aiocqhttp（OneBot v11）消息，发现合并转发后通过 `get_forward_msg`
